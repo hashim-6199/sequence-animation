@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luxury Car Specs</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #3a0ca3);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, #f0c300, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .card {
+      width: 300px;
+      background: linear-gradient(145deg, #a800a8, #8e00b3);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      opacity: 0;
+      transform: translateY(60px) scale(0.9);
+      transition: all 0.8s ease;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      animation: pulseShadow 1s ease-out;
+    }
+
+    @keyframes pulseShadow {
+      0% { box-shadow: 0 0 0 rgba(255, 255, 255, 0.2); }
+      50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); }
+      100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #ffd700;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ffdf00, #ff8c00);
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 223, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(255, 223, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Luxury Car Specifications</h1>
+
+  <div class="card" id="car1">
+    <h2>Lamborghini Urus</h2>
+    <ul>
+      <li>Engine: 4.0L V8 Twin-Turbo</li>
+      <li>Power: 657 hp</li>
+      <li>0–100 km/h: 3.3 sec</li>
+      <li>Top Speed: 305 km/h</li>
+      <li>Transmission: 8-speed automatic</li>
+      <li>Drivetrain: AWD</li>
+      <li>Weight: 2,200 kg</li>
+    </ul>
+  </div>
+
+  <div class="card" id="car2">
+    <h2>Porsche 911 Turbo S</h2>
+    <ul>
+      <li>Engine: 3.8L Flat-6 Twin-Turbo</li>
+      <li>Power: 640 hp</li>
+      <li>0–100 km/h: 2.7 sec</li>
+      <li>Top Speed: 330 km/h</li>
+      <li>Transmission: 8-speed PDK</li>
+      <li>Drivetrain: AWD</li>
+      <li>Weight: 1,640 kg</li>
+    </ul>
+  </div>
+
+  <div class="card" id="car3">
+    <h2>Mercedes AMG G63</h2>
+    <ul>
+      <li>Engine: 4.0L V8 Twin-Turbo</li>
+      <li>Power: 577 hp</li>
+      <li>0–100 km/h: 4.5 sec</li>
+      <li>Top Speed: 240 km/h</li>
+      <li>Transmission: 9-speed automatic</li>
+      <li>Drivetrain: AWD</li>
+      <li>Weight: 2,560 kg</li>
+    </ul>
+  </div>
+
+  <button id="restartBtn">Restart Animation</button>
+
+  <script>
+    const cards = [
+      document.getElementById('car1'),
+      document.getElementById('car2'),
+      document.getElementById('car3')
+    ];
+
+    function playAnimation() {
+      cards.forEach((card, index) => {
+        card.classList.remove('show');
+        void card.offsetWidth; // reset animation
+        setTimeout(() => {
+          card.classList.add('show');
+        }, index * 1000);
+      });
+    }
+
+    playAnimation();
+
+    document.getElementById('restartBtn').addEventListener('click', playAnimation);
+  </script>
+
+</body>
+</html>
